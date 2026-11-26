@@ -37,7 +37,7 @@ Codex plugins have no settings of their own, so the token reaches Codex from an 
    `bearer_token_env_var` sends `Authorization: Bearer <token>` from `OPOVI_TOKEN` on every MCP call. (If your setup
    uses `env_http_headers` instead, map `"Authorization"` to an environment variable holding `"Bearer <token>"`.)
 
-4. Install the plugin from this repository (or copy `skills/fetch-list`, `skills/fetch-single`, and `skills/fetch-all`
+4. Install the plugin from https://github.com/Riztazz/opovi-codex (or copy `skills/fetch-list`, `skills/fetch-single`, and `skills/fetch-all`
    into `~/.agents/skills/`).
 
 Then, in Opowi, open the world's Agent connection panel and save the world's harness for Codex into a folder of its
