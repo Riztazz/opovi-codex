@@ -1,0 +1,14 @@
+{
+  "name": "opovi",
+  "version": "0.3.0",
+  "description": "Serve your open AI issues in your Opowi world, with the world's own skills: $fetch-list, $fetch-single and $fetch-all.",
+  "author": {
+    "name": "Opowi"
+  },
+  "keywords": [
+    "opowi",
+    "world-building",
+    "mcp"
+  ],
+  "skills": "./skills/"
+}
