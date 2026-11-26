@@ -1,15 +1,15 @@
 # opovi-codex
 
-The Opowi plugin for Codex. A person sends AI issues from their Opowi world, then invokes a fetch skill in Codex,
+The Opovi plugin for Codex. A person sends AI issues from their Opovi world, then invokes a fetch skill in Codex,
 and Codex serves them with the world's own skills. Nothing waits and nothing wakes.
 
-Status: built from opovi-agent-kit 0.2.0. Not yet tried against a live Opowi server.
+Status: built from opovi-agent-kit 0.2.0. Not yet tried against a live Opovi server.
 
 ## Install
 
 Codex plugins have no settings of their own, so the token reaches Codex from an environment variable.
 
-1. Make an agent token in Opowi, under Settings, You, Agent connection (it acts for 90 days).
+1. Make an agent token in Opovi, under Settings, You, Agent connection (it acts for 90 days).
 2. Set it as `OPOVI_TOKEN` in your user environment, then start a new terminal so Codex sees it:
 
    - **Windows (PowerShell, persistent for your user):**
@@ -25,12 +25,12 @@ Codex plugins have no settings of their own, so the token reaches Codex from an 
      echo 'export OPOVI_TOKEN="<your-token>"' >> ~/.bashrc && source ~/.bashrc
      ```
 
-3. Add the server from `config.toml.example` to `~/.codex/config.toml`, replacing `<your Opowi install>` with your
-   Opowi address (such as `opowi.example.com`, with no trailing slash before `/api`):
+3. Add the server from `config.toml.example` to `~/.codex/config.toml`, replacing `<your Opovi install>` with your
+   Opovi address (such as `opovi.example.com`, with no trailing slash before `/api`):
 
    ```toml
    [mcp_servers.opovi]
-   url = "https://<your Opowi install>/api/plugins/ai-handoff/mcp"
+   url = "https://<your Opovi install>/api/plugins/ai-handoff/mcp"
    bearer_token_env_var = "OPOVI_TOKEN"
    ```
 
@@ -40,11 +40,17 @@ Codex plugins have no settings of their own, so the token reaches Codex from an 
 4. Install the plugin from https://github.com/Riztazz/opovi-codex (or copy `skills/fetch-list`, `skills/fetch-single`, and `skills/fetch-all`
    into `~/.agents/skills/`).
 
-Then, in Opowi, open the world's Agent connection panel and save the world's harness for Codex into a folder of its
+Then, in Opovi, open the world's Agent connection panel and save the world's harness for Codex into a folder of its
 own. Open Codex in that folder and invoke a skill.
 
-To update: pull the latest `opovi-codex` repository and start Codex again. An Opowi server that needs a newer plugin
+To update: pull the latest `opovi-codex` repository and start Codex again. An Opovi server that needs a newer plugin
 says so on the first claim (`ai-handoff.kit-outdated`).
+
+To set a new token later, change `OPOVI_TOKEN` the same way and start Codex again.
+
+Which steps were run: none. They come from Codex's documentation, as the plugin's author read it, and from the
+`codex` 0.162.1 CLI's `mcp` and `plugin` commands, which neither set a token nor read one. Nothing here has run
+inside Codex.
 
 ## Commands
 
@@ -55,7 +61,7 @@ says so on the first claim (`ai-handoff.kit-outdated`).
 | `$fetch-all` | Serves every open issue, oldest first, one proposal each, then ends the turn. |
 
 Arguments to `$fetch-single` are written directly after `$fetch-single` in your message (for example `$fetch-single 2`).
-Each proposal waits in Opowi until you accept it. A folder with no `opovi.json` gets the steps to save one, and a
+Each proposal waits in Opovi until you accept it. A folder with no `opovi.json` gets the steps to save one, and a
 folder whose harness is older than the world's gets the panel's address, with nothing claimed.
 
 ## Layout
@@ -74,7 +80,7 @@ file tools. The skills instruct Codex never to run shell commands or edit files 
 
 ## What it may do
 
-- It calls four Opowi tools, all on the Opowi server: `list_issues`, `claim`, `read_project`, `submit_proposal`.
+- It calls four Opovi tools, all on the Opovi server: `list_issues`, `claim`, `read_project`, `submit_proposal`.
 - It holds no hook and no script.
 - It reads only the issues of the token's own person, and changes nothing until that person accepts a proposal.
 
